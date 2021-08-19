@@ -40,7 +40,6 @@ export class AddpostsComponent implements OnInit {
       })
 
 
-      //window.location.reload();
     })
   }
 

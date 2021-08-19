@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router, NavigationStart } from '@angular/router';
 
 @Component({
@@ -8,6 +9,10 @@ import { Router, NavigationStart } from '@angular/router';
 })
 export class AppComponent
 {
-  title = 'CodeBlogs';
+
+  public constructor(private titleService:Title)
+  {
+    this.titleService.setTitle('CodeBlogs');
+  }
 
 }

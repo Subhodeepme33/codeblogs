@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -12,9 +13,10 @@ export class SignUpComponent implements OnInit {
 
   signUpValue : FormGroup;
   formValue: any;
+  loader;
 
-
-  constructor( private fb:FormBuilder, private authService:AuthenticationService) {
+  constructor( private fb:FormBuilder, private authService:AuthenticationService,
+  private router:Router ){
 
     this.signUpValue = this.fb.group({
 
@@ -27,19 +29,33 @@ export class SignUpComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loader=false;
+  }
 
    register(){
-    //console.log(this.signUpValue.value);
-    this.formValue = this.signUpValue.value;
+     this.loader=true;
+     this.formValue = this.signUpValue.value;
 
-    this.authService.postSignup(this.formValue).subscribe((response)=>{
-      console.log(response);
+     this.authService.postSignup(this.formValue).subscribe((response)=>{
+
+      Swal.fire({
+        title: 'Success',
+        text: 'Registration is successful.',
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'Okay!',
+      }).then((result)=>{
+        if(result.isConfirmed){
+           this.loader=false;
+           this.router.navigate(['/signin']);
+         }
+        })
 
     })
    }
 
-   
+
 
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BlogpostsService} from '../../Services/blogposts.service';
 import {BrudService} from '../../Services/brud.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -27,7 +27,8 @@ export class EditpostsComponent implements OnInit {
 
   constructor(private blogservice:BlogpostsService,
     private brudservice:BrudService,
-    private ActivatedRoute:ActivatedRoute) {}
+    private ActivatedRoute:ActivatedRoute,
+    private router:Router) {}
 
   ngOnInit(): void {
     this.showloader=true;
@@ -38,35 +39,36 @@ export class EditpostsComponent implements OnInit {
     this.brudservice.getblog(this.pId).subscribe(response=>{
       this.previousdata=[response.postdata];
       this.showloader=false;
-      //console.log("Inside edit",response);
      })
 
   }
   EditPostsForm(formvalue:any){
-    //this.showloader=true;
     this.isdisabled=true;
     this.brudservice.editblog(formvalue.value).subscribe((response)=>{
-      this.blogresponse = response;
-      this.isdisabled=false;
+      if(response){
+        Swal.fire({
+          title: 'Success',
+          text: 'Post Edited.',
+          icon: 'success',
+          showCancelButton: false,
+          confirmButtonText: 'Okay!',
+        }).then((result)=>{
+          if(result.isConfirmed){
+            this.isdisabled=false;
+           }
+          })
+        }
     })
-
-    if(this.blogresponse){
-      Swal.fire({
-        title: 'Yayy!!',
-        text: 'Changes applied successfully!',
-        icon: 'success',
-        showCancelButton: false,
-        confirmButtonText: 'Okay!',
-
-      })
-    }
-
-    
   }
 
 
   Goback(){
-    window.history.back();
+    //window.history.back();
+    if(sessionStorage.getItem('userid'))
+    {
+      this.router.navigate(['/home']);
+    }
+
   }
 
 }
