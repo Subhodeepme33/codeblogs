@@ -1,0 +1,75 @@
+<div *ngIf="isnotmobile;else showform">
+  <p>Will not show</p>
+</div>
+<ng-template #showform>
+  <div class="container">
+    <div class="row">
+
+      <div class="col">
+
+        <h1 class="display-6">Login</h1>
+        <small class="form-text text-muted">
+          Sign in to open your world of possibilities!
+        </small>
+        <!-- Template driven form-->
+        <!-- FormGroup Instance ngForm-->
+        <!-- FormControl Instance ngModel-->
+
+        <form #formValue = "ngForm" (submit)="loginForm(formValue)">
+
+          <div class="form-group">
+              <label class="frmlbl">Email*</label>
+              <input type="email" class="form-control" ngModel name="email" ngModel="#email"  ngModel placeholder="Email" required>
+
+          </div>
+
+            <div class="form-group">
+              <label class="frmlbl"> Password*</label>
+              <input type="password" class="form-control"  ngModel  name="password" ngModel="#password" ngModel placeholder="Password" required>
+
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input">
+              <label class="form-check-label" style="font-family: Roboto; font-weight: bold;">Remember me</label>
+            </div>
+
+            <div class="form-group">
+
+
+
+              <div class="text-center">
+                <button type="submit"  [disabled]="formValue.invalid" class="btn btn-secondary signin ">
+
+                  <div *ngIf="loader;else signin">
+                    <div class="spinner-border text-info spinner-border-sm" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                 </div>
+                 <ng-template #signin>
+                  Sign in
+                 </ng-template>
+
+                </button>
+              </div>
+            </div>
+
+
+          </form>
+
+          <span class="signinlink" style="color: black;">Not registered yet?</span><a href="/signup" style="color:#610CBE ; font-family: 'Roboto'; font-weight: bold;"> Create an account</a>
+
+      </div>
+
+      <div class="col">
+        <img src="../../../../assets/log.svg" class="regimage" />
+
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+
+
+

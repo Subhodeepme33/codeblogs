@@ -1,0 +1,86 @@
+<div class="container">
+
+
+<div *ngIf="showeditor; else somethingelse">
+
+    <form #formValue ="ngForm" (submit)="AddPostsForm(formValue)">
+
+      <div class="row">
+        <div class="col-md-12">
+          <label class="frmlbl display-4"> Add Blog</label>
+          <input type="text" class="form-control" ngModel name="title" ngModel="#title" ngModel placeholder="Title" required>
+        </div>
+
+        <!-- Tiny MCE Editor -->
+        <div class="col-md-12">
+          <editor
+            apiKey="da46020z3z5e03zlyjzp7gf0vikfudgjn8nl88kpiclk9fp8"
+            [init]="{
+              height: 450,
+              menubar: false,
+              plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code ',
+                'insertdatetime media table paste code help wordcount'
+              ],
+              toolbar:
+                'undo redo | formatselect | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help'
+            }"
+
+            ngModel name="blogbody" ngModel="#blogbody" ngModel placeholder="Write your blog.."
+          >
+        </editor>
+        </div>
+        <div>
+          <input type="hidden" class="form-control" ngModel name="postedby" [(ngModel)]='loggeduser'  required>
+        </div>
+        <div class="col-md-12">
+          <button class="btn btn-success mt-5 mb-3" type="submit">Create post.</button>
+        </div>
+      </div>
+  </form>
+</div>
+
+<ng-template #somethingelse>
+  <div class="dataload">
+  <form #formValue ="ngForm" (submit)="AddPostsForm(formValue)">
+      <div class="row">
+        <div class="col-md-12">
+          <label class="frmlbl display-4"> Add Blog</label>
+          <input type="text" class="form-control" ngModel name="title" ngModel="#title" ngModel placeholder="Title" required>
+        </div>
+
+        <!-- Tiny MCE Editor -->
+        <div class="col-md-12">
+          <editor
+            apiKey="da46020z3z5e03zlyjzp7gf0vikfudgjn8nl88kpiclk9fp8"
+            [init]="{
+              height: 450,
+              menubar: false,
+              plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code ',
+                'insertdatetime media table paste code help wordcount'
+              ],
+              toolbar:
+                'undo redo | formatselect | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help'
+            }"
+
+            ngModel name="blogbody" ngModel="#blogbody" ngModel placeholder="Write your blog.."
+          >
+        </editor>
+        </div>
+      </div>
+  </form>
+  </div>
+  <div class="spinner-grow d-flex justify-content-center loader"  style="width: 3rem; height: 3rem;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>
+
+
+</div>

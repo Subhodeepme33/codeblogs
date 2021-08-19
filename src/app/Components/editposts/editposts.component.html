@@ -1,0 +1,73 @@
+<div class="container">
+
+<div *ngIf="showloader;else editform">
+  <div class="d-flex justify-content-center mt-5">
+    <div class="spinner-border text-info" style="width:5rem; height: 5rem;position: fixed;"  role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<ng-template #editform>
+
+  <div>
+        <form #formValue ="ngForm" (submit)="EditPostsForm(formValue)">
+          <div class="row">
+
+            <div *ngFor="let p of previousdata;index as i">
+
+
+
+                <div class="col-md-12">
+                  <label class="frmlbl display-4"> Edit Blog</label>
+                  <input type="text" class="form-control" name="title"
+                  ngModel name="title"  ngModel={{p.title}} required>
+                </div>
+
+                <!-- Tiny MCE Editor -->
+                <div class="col-md-12">
+                  <editor
+                    apiKey="da46020z3z5e03zlyjzp7gf0vikfudgjn8nl88kpiclk9fp8"
+                    [init]="{
+                      height: 450,
+                      menubar: false,
+                      plugins: [
+                        'advlist autolink lists link image charmap print preview anchor',
+                        'searchreplace visualblocks code ',
+                        'insertdatetime media table paste code help wordcount'
+                      ],
+                      toolbar:
+                        'undo redo | formatselect | bold italic backcolor | \
+                        alignleft aligncenter alignright alignjustify | \
+                        bullist numlist outdent indent | removeformat | help'
+                    }"
+
+                    ngModel name="blogbody" ngModel="{{p.body}}" ngModel placeholder="Write your blog.."
+                  >
+                </editor>
+                </div>
+                 <!-- Tiny MCE Editor -->
+                <div class="col-md-12">
+                  <!--
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Body</label>
+                    <textarea class="form-control" ngModel name="blogbody" ngModel="#blogbody" ngModel placeholder="Write your blog.." rows="3"></textarea>
+                  </div>
+                -->
+                </div>
+
+                <input type="hidden" class="form-control" ngModel name="pId" [(ngModel)]='pId'  required>
+
+                <div class="col-md-12" >
+                  <button class="btn btn-info mt-5 mb-3" [disabled]="isdisabled" type="submit" style="padding: 5px;margin: 10px;">Save changes</button>
+                  <button class="btn btn-primary mt-5 mb-3"  (click)="Goback()">Go back</button>
+                </div>
+            </div>
+          </div>
+      </form>
+    </div>
+
+</ng-template>
+
+
+  </div>

@@ -1,0 +1,62 @@
+<div class="container-fluid ">
+  <div class="row justify-content-center mt-lg-5">
+
+    <div class="col-md-4">
+      <div class="card mb-5">
+        <img class="card-img-top mb-2" src="../../../assets/about1.svg" alt="Card image cap">
+        <form [formGroup]="contactus" (submit)="onSubmit()">
+
+          <div class="form-group">
+            <label class="frmlbl">Name*</label>
+            <input type="text" class="form-control" ngModel name="name" ngModel="#name" formControlName="name" ngModel placeholder="Name">
+          </div>
+
+          <div *ngIf="contactus.controls['name'].invalid &&  contactus.controls['name'].touched"
+          class="alert alert-danger">
+          <small> Name is required.</small>
+          </div>
+
+
+          <div class="form-group">
+            <label class="frmlbl">Email*</label>
+            <input type="email" class="form-control" ngModel name="email" ngModel="#email" formControlName="email" ngModel placeholder="Email" required>
+          </div>
+
+          <div *ngIf="contactus.controls['email'].invalid &&  contactus.controls['email'].touched"
+          class="alert alert-danger">
+          <small> Email is required.</small>
+          </div>
+
+          <div class="form-group">
+              <label class="frmlbl">Phone*</label>
+              <input type="phone" class="form-control" ngModel name="phone" ngModel="#phone"  formControlName="phone" ngModel placeholder="Phone" required>
+          </div>
+
+          <div *ngIf="contactus.controls['phone'].invalid &&  contactus.controls['phone'].touched"
+          class="alert alert-danger">
+          <small> Phone is required.</small>
+          </div>
+
+          <div class="form-group">
+            <label class="frmlbl">Contacting us for?</label>
+            <textarea class="form-control" name="content" formControlName="content" ngModel="#content" ngModel placeholder="Your query...." rows="3"></textarea>
+          </div>
+
+            <div class="form-group">
+              <div class="text-center">
+                <button type="submit" class="btn btn-secondary contactbtn ">
+                Submit
+                </button>
+              </div>
+            </div>
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<app-footer></app-footer>

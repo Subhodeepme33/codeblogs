@@ -1,0 +1,29 @@
+.container-fluid{
+  margin-bottom: 10px;
+}
+
+.blockquote{
+  text-align: justify;
+  font-family: Roboto;
+}
+.vl {
+  border-left: 1px solid black;
+  height: 491px;
+}
+
+.card{
+  box-shadow: 2px 8px 8px 8px rgba(0,0,0,0.2);
+
+}
+.card-title{
+  text-align: center;
+}
+
+.card-text{
+  font-family: Roboto;
+  text-align: justify;
+}
+
+img{
+  width: 300px;
+}

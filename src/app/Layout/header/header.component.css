@@ -1,0 +1,22 @@
+.bg-primary
+{
+  background-color: #73069A !important;
+}
+.logo
+{
+  width: 55px;
+}
+
+.nav-link{
+  color: white;
+  font-family: 'Roboto';
+}
+
+span{
+  font-family: 'Roboto';
+  font-weight: bold;
+}
+
+.dropdown-item{
+font-family: Roboto;
+}

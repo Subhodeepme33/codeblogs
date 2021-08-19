@@ -1,0 +1,40 @@
+<div class="wrapper mt-5 position-static">
+  <!-- Sidebar -->
+  <nav id="sidebar">
+      <div class="sidebar-header">
+          <p>Welcome, John</p>
+      </div>
+
+      <ul class="list-unstyled components">
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+
+            <a class="nav-link" routerLink="/home">
+              <span>
+                <img src="../../../assets/home.png">
+              </span>Home
+            </a>
+          </li>
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="nav-link" routerLink="/about">
+              <span>
+                <img src="../../../assets/home.png">
+              </span>About</a>
+          </li>
+
+
+          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="nav-link" routerLink="/contact">
+              <span>
+                <img src="../../../assets/contact.png">
+              </span>Contact</a>
+          </li>
+          <li  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="nav-link" (click)="logout()">
+              <span>
+                <img src="../../../assets/logout.png">
+              </span>Logout</a>
+          </li>
+      </ul>
+  </nav>
+
+</div>

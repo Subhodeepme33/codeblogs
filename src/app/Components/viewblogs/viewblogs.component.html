@@ -1,0 +1,33 @@
+<div class="container">
+
+<div *ngIf="isloaded; else showposts">
+  <div class="d-flex justify-content-center mt-5">
+    <div class="spinner-border text-info" style="width:5rem; height: 5rem;position: fixed;"  role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+<ng-template #showposts>
+  <div class="container mb-5">
+    <div class="card mt-5"  style="margin-bottom: 15px;padding: 50px; " *ngFor="let p of post;index as i">
+
+      <div class="card-body">
+
+            <p class="card-title" style="background-color:#AB46CC;padding:15px;color:white;
+            font-family: 'Lora';font-size: 35px; border-radius: 2%;">
+            {{p.postdata[0].title}}
+          </p>
+            <div [innerHtml]="p.postdata[0].body|safehtml"></div>
+          </div>
+          <div>
+            <button class="btn btn-info mb-5" style="font-family: 'Roboto';" (click)="goback()"> Go back</button>
+          </div>
+
+      </div>
+
+  </div>
+</ng-template>
+
+
+
+</div>

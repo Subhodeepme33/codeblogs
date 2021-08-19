@@ -1,0 +1,128 @@
+<div class="container-fluid">
+
+  <!-- Side Section-->
+  <div class="row">
+    <div class="col-lg-2">
+      <app-usermenu></app-usermenu>
+    </div>
+  <!--Main Content-->
+    <div class="col-lg-10">
+      <div *ngIf="loggeduser; else showerror">
+
+        <div class="container">
+
+
+          <div *ngIf="show; else showHome">
+
+            <div class="d-flex justify-content-center mt-5">
+              <div class="spinner-border text-info" style="width:5rem; height: 5rem;position: fixed;"  role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #showHome>
+
+
+
+            <div class="home">
+              <div class=" dashboard mx-auto">
+                <div class="row">
+                  <div class="col-lg-4 ">
+                    <h3 class="display-3" style="font-family: 'Roboto' !important;">Dashboard</h3>
+
+                  </div>
+                  <div class="col-lg-4 ">
+                    <div class="newposts">
+                    <button class="btn btn-success" id="addnew" routerLink='/addposts'>
+                      <span class="material-icons-outlined">
+                        <img src="../../../assets/add.png">
+                        </span>
+                      Create Post</button>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-2" style="font-family: 'Lora'!important; ">
+
+                    <h5 class="display-6">Blog Count: {{totalposts}}</h5>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="dashboardtable card">
+                  <table class=" table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+
+                    <tbody *ngIf="posts">
+
+                      <tr *ngFor="let p of posts;index as i">
+                        <td style="font-family: 'Roboto'; font-size: 20px;">
+                          {{p.title|truncate:25}}
+                        </td>
+
+                        <td>
+
+                          <button class="btn btn-primary" (click)=editpost(p._id)>
+                            <span>
+                              <img src="../../../assets/edit.png">
+                            </span>
+                            Edit Post</button>
+                        </td>
+
+                        <td>
+
+                          <button class="btn btn-danger" (click)=deleteposts(p._id)>
+                            <span>
+                              <img src="../../../assets/delete.png">
+                            </span>
+                            Delete Post</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+
+            <div class="col-lg-4 ">
+              <h5 class="display-5" style="font-family: 'Roboto';">Recent Posts:</h5>
+            </div>
+
+              <div class="container  mb-5">
+                <div class="viewblog">
+                  <div class="card mt-5 mb-5" style="width: 18rem;display:inline-block;
+                  margin-bottom: 20px; height: 20rem;" *ngFor="let p of allposts[0].postdata;index as i">
+                    <div class="card-body">
+                          <p class="text-center"style="font-size: 30px;">{{p.title | truncate:10}}</p>
+                   </div>
+                   <div class="text-center mt-5;" >
+                    <button class="btn btn-primary" (click)="viewpost(p._id)">View Post</button>
+                  </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+          </ng-template>
+
+        </div>
+      </div>
+      <ng-template #showerror>
+        <div class="alert alert-danger" role="alert">
+          You are not logged in!
+        </div>
+      </ng-template>
+
+
+    </div>
+  </div>
+</div>
